@@ -3,7 +3,7 @@ package edu.eci.arsw.primefinder;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PrimeFinderThread extends Thread{
+public class                                                            PrimeFinderThread extends Thread{
 
 	
 	int a,b;
