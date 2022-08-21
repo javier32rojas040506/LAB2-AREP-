@@ -69,8 +69,11 @@ Taller.
 3.  Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
+    
     ![](./img/media/image6.png)
+    
     De esta manera solo un hilo entrará a hacer la verificación:
+    
     ![](./img/media/image7.png)
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
@@ -79,6 +82,7 @@ Taller.
     
     Para poder pausar los hilos todos los galgos comparten un monitor que es estatico, y un booleano que indica 
     si esta pausado o no.
+    
     ![](./img/media/image8.png)
     ![](./img/media/image9.png)
 
