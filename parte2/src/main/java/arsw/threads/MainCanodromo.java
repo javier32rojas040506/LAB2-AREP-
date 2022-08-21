@@ -17,7 +17,6 @@ public class MainCanodromo {
         can = new Canodromo(17, 100);
         galgos = new Galgo[can.getNumCarriles()];
         can.setVisible(true);
-
         //Acción del botón start
         can.setStartAction(
                 new ActionListener() {
@@ -35,11 +34,18 @@ public class MainCanodromo {
                                     //crea los hilos 'galgos'
                                     galgos[i] = new Galgo(can.getCarril(i), "" + i, reg);
                                     //inicia los hilos
+                                    can.addGalgo(galgos[i]);
                                     galgos[i].start();
-
+                                    if (i + 1 == can.getNumCarriles()) {
+                                        try {
+                                            galgos[i].join();
+                                        } catch (InterruptedException interruptedException) {
+                                            interruptedException.printStackTrace();
+                                        }
+                                    }
                                 }
-                               
-				can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1); 
+
+				                can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1);
                                 System.out.println("El ganador fue:" + reg.getGanador());
                             }
                         }.start();
@@ -52,6 +58,9 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        for (int i = 0; i < can.getNumCarriles(); i++) {
+                            galgos[i].setStatus(true);
+                        }
                         System.out.println("Carrera pausada!");
                     }
                 }
@@ -61,6 +70,12 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        for (int i = 0; i < can.getNumCarriles(); i++) {
+                            galgos[i].setStatus(false);
+                        }
+                        synchronized (galgos[0].obj){
+                            galgos[0].obj.notifyAll();
+                        }
                         System.out.println("Carrera reanudada!");
                     }
                 }
