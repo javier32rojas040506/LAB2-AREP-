@@ -2,6 +2,11 @@ Escuela Colombiana de Ingeniería
 
 Arquitecturas de Software – ARSW
 
+### Presentado por:
+
+- Francisco Javier Rojas Muñoz
+- Juan Camilo Rojas Castro
+
 #### Taller – programación concurrente, condiciones de carrera y sincronización de hilos. EJERCICIO INDIVIDUAL O EN PAREJAS.
 
 ##### Parte I – Antes de terminar la clase.
@@ -55,16 +60,27 @@ Taller.
     podrían salir resultados válidos, pero en otros se pueden presentar
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
+    
+    La region critica es el momento en el que evalúa si la posición del galgo es igual a la longitud
+    del carril para verífica si ganó, esta sección es la única que debíamos sincronizar:
+    
+
 
 3.  Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
-
+    ![](./img/media/image6.png)
+    De esta manera solo un hilo entrará a hacer la verificación:
+    ![](./img/media/image7.png)
 4.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
-
+    
+    Para poder pausar los hilos todos los galgos comparten un monitor que es estatico, y un booleano que indica 
+    si esta pausado o no.
+    ![](./img/media/image8.png)
+    ![](./img/media/image9.png)
 
 ## Criterios de evaluación
 
